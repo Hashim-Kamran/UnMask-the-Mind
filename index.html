@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UnMask the Mind</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      backdrop-filter: brightness(0.8);
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #FFDEE9 0%, #B5FFFC 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .quote {
+      font-size: 1.8em;
+      max-width: 800px;
+      padding: 0 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 15px;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>UnMask the Mind</h1>
+  <div class="quote" id="quote"></div>
+
+  <script>
+    const quotes = [
+      "Believe you can and you're halfway there.",
+      "Your limitation—it's only your imagination.",
+      "Push yourself, because no one else is going to do it for you.",
+      "Sometimes later becomes never. Do it now.",
+      "Great things never come from comfort zones.",
+      "Dream it. Wish it. Do it.",
+      "Success doesn’t just find you. You have to go out and get it.",
+      "The harder you work for something, the greater you’ll feel when you achieve it.",
+      "Dream bigger. Do bigger.",
+      "Don’t stop when you’re tired. Stop when you’re done.",
+      "Wake up with determination. Go to bed with satisfaction.",
+      "Do something today that your future self will thank you for.",
+      "Little things make big days.",
+      "It’s going to be hard, but hard does not mean impossible.",
+      "Don’t wait for opportunity. Create it.",
+      "Sometimes we’re tested not to show our weaknesses, but to discover our strengths.",
+      "The key to success is to focus on goals, not obstacles.",
+      "Dream it. Believe it. Build it.",
+      "Success is what comes after you stop making excuses.",
+      "Be so good they can’t ignore you.",
+      "Doubt kills more dreams than failure ever will.",
+      "If you’re going through hell, keep going.",
+      "A winner is a dreamer who never gives up.",
+      "The only time you fail is when you fall down and stay down.",
+      "Work hard in silence. Let your success be the noise.",
+      "Don’t watch the clock; do what it does. Keep going.",
+      "It always seems impossible until it’s done.",
+      "Strive for progress, not perfection.",
+      "Take the risk or lose the chance.",
+      "You don’t need to see the whole staircase, just take the first step.",
+      "Act as if what you do makes a difference. It does.",
+      "Success is not how high you have climbed, but how you make a positive difference to the world.",
+      "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+      "Don't limit your challenges. Challenge your limits.",
+      "The only place where success comes before work is in the dictionary.",
+      "Only those who dare to fail greatly can ever achieve greatly.",
+      "Start where you are. Use what you have. Do what you can.",
+      "Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway.",
+      "Hardships often prepare ordinary people for an extraordinary destiny.",
+      "Try not to become a person of success, but rather try to become a person of value.",
+      "Motivation is what gets you started. Habit is what keeps you going.",
+      "Keep your face always toward the sunshine—and shadows will fall behind you.",
+      "No matter how hard the past is, you can always begin again.",
+      "Your passion is waiting for your courage to catch up.",
+      "Magic is believing in yourself. If you can make that happen, you can make anything happen.",
+      "If something is important enough, even if the odds are stacked against you, you should still do it.",
+      "Don’t tell people your plans. Show them your results.",
+      "It does not matter how slowly you go as long as you do not stop.",
+      "Everything you’ve ever wanted is on the other side of fear.",
+      "It’s not whether you get knocked down. It’s whether you get up.",
+      "Never regret anything that made you smile.",
+      "You are braver than you believe, stronger than you seem, and smarter than you think.",
+      "Happiness is not something ready-made. It comes from your own actions.",
+      "Success isn’t about how much money you make. It’s about the difference you make in people’s lives.",
+      "The best way to predict the future is to create it.",
+      "You don’t have to be great to start, but you have to start to be great.",
+      "Once you choose hope, anything’s possible.",
+      "It’s never too late to be what you might’ve been.",
+      "Every moment is a fresh beginning.",
+      "Turn your wounds into wisdom.",
+      "Wherever you go, go with all your heart.",
+      "Do what you can with all you have, wherever you are.",
+      "The secret of getting ahead is getting started.",
+      "Quality means doing it right when no one is looking.",
+      "If you can dream it, you can do it.",
+      "Setting goals is the first step in turning the invisible into the visible.",
+      "Aim for the moon. If you miss, you may hit a star.",
+      "Go the extra mile. It’s never crowded.",
+      "You are never too old to set another goal or to dream a new dream.",
+      "Even if you fall on your face, you’re still moving forward.",
+      "Don’t let yesterday take up too much of today.",
+      "A river cuts through rock not because of its power, but because of its persistence.",
+      "If opportunity doesn’t knock, build a door.",
+      "Failure will never overtake me if my determination to succeed is strong enough.",
+      "The only limit to our realization of tomorrow is our doubts of today.",
+      "The expert in anything was once a beginner.",
+      "Perseverance is not a long race; it is many short races one after the other.",
+      "Never bend your head. Always hold it high. Look the world straight in the eye.",
+      "There is no elevator to success—you have to take the stairs.",
+      "Life is 10% what happens to us and 90% how we react to it.",
+      "Your life does not get better by chance, it gets better by change.",
+      "Don’t be pushed by your problems, be led by your dreams.",
+      "With the new day comes new strength and new thoughts.",
+      "Opportunities don’t happen, you create them.",
+      "I am not a product of my circumstances. I am a product of my decisions.",
+      "Don’t wish it were easier. Wish you were better.",
+      "Success is the sum of small efforts, repeated day in and day out.",
+      "Keep going. Everything you need will come to you at the perfect time.",
+      "Never stop doing your best just because someone doesn’t give you credit.",
+      "If you want something you’ve never had, you must be willing to do something you’ve never done.",
+      "Discipline is the bridge between goals and accomplishment.",
+      "Stay positive. Work hard. Make it happen.",
+      "Great minds discuss ideas. Average minds discuss events. Small minds discuss people.",
+      "Believe in yourself and all that you are.",
+      "Stay away from negative people. They have a problem for every solution.",
+      "You were born to be real, not to be perfect.",
+      "Make each day your masterpiece.",
+      "Don’t count the days, make the days count.",
+      "Work until your idols become your rivals.",
+      "You miss 100% of the shots you don’t take."
+    ];
+
+    // Retrieve the index from localStorage and show the next quote
+    let seenQuotes = JSON.parse(localStorage.getItem("seenQuotes")) || [];
+
+    if (seenQuotes.length === quotes.length) {
+      seenQuotes = [];
+    }
+
+    let availableIndexes = [...Array(quotes.length).keys()].filter(i => !seenQuotes.includes(i));
+    let nextIndex = availableIndexes[Math.floor(Math.random() * availableIndexes.length)];
+    seenQuotes.push(nextIndex);
+    localStorage.setItem("seenQuotes", JSON.stringify(seenQuotes));
+    document.getElementById("quote").textContent = quotes[nextIndex];
+  </script>
+</body>
+</html>
